@@ -1,13 +1,15 @@
 import discord
 from discord.ext import commands
 import random
-import os
 import gogS
 
-key=os.getenv('key')
-wkey=os.getenv('wkey')
+def read_token():
+    with open("token.txt", "r") as f:
+        lines = f.readlines()
+        tok = lines[0].strip()
+    return tok
 
-TOKEN = os.getenv('TOKEN')
+TOKEN = read_token()
 
 gogLinks = gogS.get_gog("https://tenor.com/search/gog-gifs")
 
