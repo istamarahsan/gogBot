@@ -1,7 +1,13 @@
 import discord
 from discord.ext import commands
 import random
+import os
 import gogS
+
+key=os.getenv('key')
+wkey=os.getenv('wkey')
+
+TOKEN = os.getenv('TOKEN')
 
 gogLinks = gogS.get_gog("https://tenor.com/search/gog-gifs")
 
@@ -12,16 +18,11 @@ client = commands.Bot(command_prefix = '.', intents = intents)
 async def on_ready():
     print('Bot is ready.')
 
-def is_it_me(ctx):
-    return ctx.author.id == 326017514188308480
-
 @client.command()
-#@commands.check(is_it_me)
 async def gog(ctx):
     await ctx.send( random.choice(gogLinks) )
 
 @client.command()
-#@commands.check(is_it_me)
 async def ultimategog(ctx):
     await ctx.send('https://tenor.com/view/gog-ultimate-gog-ultigog-gog-monkey-monkey-gog-gif-18791701')
 
@@ -31,4 +32,4 @@ async def refreshgog(ctx):
     gogLinks = gogS.get_gog("https://tenor.com/search/gog-gifs")
     await ctx.send('refreshed gog')
 
-client.run('Nzc3NTQzMjA2MTM2NDQ2OTc2.X7E9ig.EDrV9bidk2f8La4wXYZtcB7tpvo')
+client.run(TOKEN)
